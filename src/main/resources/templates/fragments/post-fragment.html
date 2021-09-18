@@ -11,6 +11,7 @@
     <div class="title">
         <a th:href="@{ ${post.postUrl} }" target="_blank">[[${post.title}]]</a>
         <div th:if="${#strings.contains(post.postUrl, 'http://')}">
+<!--            strings.replace function is a URL format helper which allows us to replace http:// in the postUrl with an empty space-->
             <div th:with="arg=${#strings.replace(post.postUrl,'http://','')}">
                 <div th:if="${#strings.contains(arg, '/')}">
                     <div th:with="arg2=${#strings.arraySplit(arg, '/')}">
@@ -30,6 +31,7 @@
             </div>
         </div>
         <div th:if="${#strings.contains(post.postUrl, 'https://')}">
+<!--            in this section we use the plural words helper with the th:if and th:unless construct to determine whether to use the word "comment" or "comments"-->
             <div th:with="arg=${#strings.replace(post.postUrl,'https://','')}">
                 <div th:if="${#strings.contains(arg, '/')}">
                     <div th:with="arg2=${#strings.arraySplit(arg, '/')}">
@@ -69,6 +71,7 @@
         </div>
         <div th:if="${post.voteCount == 1}" class="meta">
             [[${post.voteCount}]] point by [[${post.userName}]] on
+<!--            date format helper is a function that helps us to format dates&#45;&#45;arguments specify object.property and the format we'd like-->
             <span th:text="${#dates.format(post.postedAt, 'MM-dd-YY')}"></span>
             <a th:href="@{/post/{id}(id=${post.id})}" th:if="${post.comments.size() == 1}">[[${post.comments.size()}]]
                 comment</a>

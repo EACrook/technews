@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--  title-pattern attribute will make the title dynamic; when we show a different view template, the title will change to reflect the pattern below-->
   <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Just Tech News</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -13,16 +14,19 @@
       <a href="/">Just Tech News</a>
     </h1>
     <nav>
+<!--      the if statement will render HTML elements based on a provided condition; in this one it is that the user is logged in-->
       <div th:if="${loggedIn}">
+<!--        the href with dynamically change the <a> element's href based on the evaluation of the if conditionals-->
         <a th:href="@{/dashboard}">dashboard</a>
         <a th:href="@{/users/logout}">logout</a>
       </div>
+<!--      this is the next part of the if statement; if the condition isn't met and returns false, the user will be directed to the login page-->
       <div th:unless="${loggedIn}">
         <a th:href="@{/login}">login</a>
       </div>
     </nav>
   </header>
-
+<!--this could be considered the most important part with the layout:fragment; it will allow other templates to be displayed in this section of the page-->
   <main layout:fragment="content">
     <p>This is filled by the content template.</p>
   </main>

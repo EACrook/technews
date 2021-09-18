@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+<!--the layout:decorate designates that the homepage HTML file will be bount to layout.html-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
     <title>Homepage</title>
 </head>
 <body>
 
+<!--    the layout:fragment defines which specific content from the homepage.html will be displayed on the layout.html-->
     <div layout:fragment="content">
         <ol>
+<!--            th:each is the Thymeleaf for-loop; this states we will iterate over each post inside of the post list creating a list item for each-->
             <li th:each="post : ${postList}" class="post-list">
                 <div th:insert="fragments/post-fragment :: post-fragment"></div>
             </li>

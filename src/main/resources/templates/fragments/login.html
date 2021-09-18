@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--similar to the homepage.html, we reference layout:decorate and then a <div> element with a content attribute designation as well-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
@@ -14,8 +15,10 @@
         <h3>[[${notice}]]</h3>
     </div>
 
+<!--    th:action attribute designates the API route for submitting this form; this one specifically designates that the submitted form fields will comprise a user object and the method attribute designates it as a POST request-->
     <form action="#" th:action="@{/users/login}" th:object="${user}" method="post" class="login-form">
         <div>
+<!--            th:field just gives the inputs set to the field-->
             <label>email:</label>
             <input type="text" th:field="*{email}"/>
         </div>
