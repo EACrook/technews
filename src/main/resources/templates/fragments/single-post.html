@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
   <title>Single-post</title>
 </head>
@@ -19,7 +17,7 @@
 
   <form th:if="${loggedIn}" action="#" th:action="@{/comments}" th:object="${comment}" method="post" class="comment-form">
     <div>
-      <input type="hidden" th:value="${post.id}" name="postId"/>
+      <input type="hidden" th:value="${post.id}" name="postId">
       <textarea name="comment-body" th:field="*{commentText}"></textarea>
     </div>
 

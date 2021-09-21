@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <!--similar to the homepage.html, we reference layout:decorate and then a <div> element with a content attribute designation as well-->
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
     <title>Login</title>
 </head>
@@ -20,11 +18,11 @@
         <div>
 <!--            th:field just gives the inputs set to the field-->
             <label>email:</label>
-            <input type="text" th:field="*{email}"/>
+            <input type="text" th:field="*{email}">
         </div>
         <div>
             <label>password:</label>
-            <input type="password" th:field="*{password}"/>
+            <input type="password" th:field="*{password}">
         </div>
         <div>
             <button type="submit">login</button>
@@ -36,15 +34,15 @@
     <form action="#" th:action="@{/users}" th:object="${user}" method="post" class="signup-form">
         <div>
             <label>username:</label>
-            <input type="text" th:field="*{username}"/>
+            <input type="text" th:field="*{username}">
         </div>
         <div>
             <label>email:</label>
-            <input type="text" th:field="*{email}"/>
+            <input type="text" th:field="*{email}">
         </div>
         <div>
             <label>password:</label>
-            <input type="password" th:field="*{password}"/>
+            <input type="password" th:field="*{password}">
         </div>
         <div>
             <button type="submit">signup</button>
