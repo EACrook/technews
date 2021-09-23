@@ -1,7 +1,9 @@
 package com.technews.controller;
 
+import com.technews.model.Post;
 import com.technews.model.User;
 import com.technews.repository.CommentRepository;
+import com.technews.repository.PostRepository;
 import com.technews.repository.UserRepository;
 import com.technews.repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class TechNewsController {
 
     @Autowired
     CommentRepository commentRepository;
+
+    @Autowired
+    PostRepository postRepository;
 
     @PostMapping("/users/login")
     public String login(@ModelAttribute User user, Model model, HttpServletRequest request) throws Exception {
@@ -94,5 +99,23 @@ public class TechNewsController {
         request.getSession().setAttribute("SESSION_USER", sessionUser);
 
         return "redirected:/dashboard";
+    }
+
+    @PostMapping("/posts")
+        public String addPostDashboardPage(@ModelAttribute Post post, Model model, HttpServletRequest request) {
+
+        if ((post.getTitle().equals(null) || post.getTitle().isEmpty()) || (post.getPostUrl().equals(null) || post.getPostUrl().isEmpty())) {
+            return "redirect:/dashboardEmptyTitleAndLink";
+        }
+
+        if (request.getSession(false) == null) {
+            return "redirect:/login";
+        } else {
+            User sessionUser = (User) request.getSession().getAttribute("SESSION_USER");
+            post.setUserId(sessionUser.getId());
+            postRepository.save(post);
+
+            return "redirect:/dashboard";
+        }
     }
 }
